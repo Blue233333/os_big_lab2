@@ -1,0 +1,7 @@
+Using gdb:
+(1) kernal/trap.c中的usertrap()
+(2) p->trapframe->a7=7，即SYS_exec
+(3) user mode，此时sstatus=0x22，SPP位(#7)为0
+(4) lw	a3,0(zero) # 0,  a3
+(5) 崩溃原因：Load Page Fault，scause值为0x0d，kernel的虚拟地址0找不到对应的物理地址，虚拟地址在0x80000000后才与物理地址有对应
+(6) name=initcode, pid=0x1
