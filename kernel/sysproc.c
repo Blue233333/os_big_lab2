@@ -11,12 +11,11 @@ uint64
 sys_sysinfo(void)
 {
   uint64 addr;
-  argaddr(1, &addr);
+  argaddr(0, &addr);
   struct sysinfo ans;
   ans.freemem = kmemleft();
   ans.nproc = proc_num();
   struct proc *p = myproc();
-  return 0;
   if(copyout(p->pagetable, addr, (char *)&ans, sizeof(ans)) < 0)
     return -1;
   return 0;
