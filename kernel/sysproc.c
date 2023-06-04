@@ -16,6 +16,7 @@ sys_sysinfo(void)
   ans.freemem = kmemleft();
   ans.nproc = proc_num();
   struct proc *p = myproc();
+  return 0;
   if(copyout(p->pagetable, addr, (char *)&ans, sizeof(ans)) < 0)
     return -1;
   return 0;
